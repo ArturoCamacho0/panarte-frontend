@@ -9,12 +9,12 @@ export interface RouteInfo {
 }
 
 export const ROUTES: RouteInfo[] = [
-  { path: '/inicio',     title: 'Inicio',         icon:'nc-shop',       class: '' },
-  { path: '/productos',         title: 'Productos',             icon:'nc-app',    class: '' },
-  { path: '/materiales',          title: 'Materiales',              icon:'nc-box',      class: '' },
-  { path: '/clientes', title: 'Clientes',     icon:'nc-circle-10',    class: '' },
-  { path: '/ventas',          title: 'Ventas',      icon:'nc-money-coins',  class: '' },
-  { path: '/compras',         title: 'Compras',        icon:'nc-cart-simple',    class: '' },
+  { path: '/inicio',     title: 'Inicio',      icon:'nc-shop',         class: '' },
+  { path: '/productos',  title: 'Productos',   icon:'nc-app',          class: '' },
+  { path: '/materiales', title: 'Materiales',  icon:'nc-box',          class: '' },
+  { path: '/clientes',   title: 'Clientes',    icon:'nc-circle-10',    class: '' },
+  { path: '/ventas',     title: 'Ventas',      icon:'nc-money-coins',  class: '' },
+  { path: '/compras',    title: 'Compras',     icon:'nc-cart-simple',  class: '' },
 ];
 
 @Component({
@@ -34,7 +34,7 @@ export class SidebarComponent implements OnInit {
 
   logout() {
     localStorage.clear();
-    this.router.navigate(['/']);
+    this.router.navigate(['/auth/login']);
   }
 
 }

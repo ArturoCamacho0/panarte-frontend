@@ -3,9 +3,9 @@
     <div class="card">
       <div class="card-header">
         <div class="update d-flex justify-content-end">
-          <button routerLink="agregar" class="btn btn-primary">Nuevo producto</button>
+          <button routerLink="agregar" class="btn btn-primary">Nuevo material</button>
         </div>
-        <h1 class="card-title">Productos</h1>
+        <h1 class="card-title">Materiales</h1>
       </div>
       <div class="card-body">
         <div class="table-responsive">
@@ -21,7 +21,7 @@
                 Estatus
               </th>
               <th class="text-right">
-                Precio
+                Proveedor
               </th>
               <th>
                 Categor&iacute;a
@@ -51,26 +51,26 @@
                   <app-loading></app-loading>
                 </td>
               </tr>
-              <tr *ngFor="let product of products">
+              <tr *ngFor="let material of materials">
                 <td>
-                  {{ product.name }}
+                  {{ material.name }}
                 </td>
                 <td>
-                  {{ product.stock }}
+                  {{ material.stock }}
                 </td>
                 <td>
-                  {{ nameStatus(product.status) }}
+                  {{ nameStatus(material.status) }}
                 </td>
                 <td class="text-right">
-                  {{ product.price | currency: 'MXN' }}
+                  {{ material.provider?.name }}
                 </td>
                 <td>
-                  {{ product.category.name }}
+                  {{ material.category?.name }}
                 </td>
                 <td class="text-right">
                   <div class="d-flex justify-content-around w-75">
-                    <button routerLink="modificar/{{ product.id }}" class="btn btn-warning">Editar</button>
-                    <button type="submit" class="btn btn-danger" (click)="popup(product.id)">Eliminar</button>
+                    <button routerLink="modificar/{{ material.id }}" class="btn btn-warning">Editar</button>
+                    <button type="submit" class="btn btn-danger" (click)="popup(material.id)">Eliminar</button>
                   </div>
                 </td>
               </tr>
@@ -83,13 +83,13 @@
   <div class="popup" *ngIf="close_popup">
     <div class="popup__card">
       <div class="popup__card-header">
-        <h2>Eliminar producto</h2>
+        <h2>Eliminar material</h2>
       </div>
       <div class="popup__card-body">
         <div class="row">
           <div class="col-md-12">
             <p>
-              ¿Est&aacute; segur@ de eliminar este producto?
+              ¿Est&aacute; segur@ de eliminar este material?
             </p>
           </div>
         </div>
@@ -97,7 +97,7 @@
       <div class="popup__card-footer">
         <button class="btn btn-round" [disabled]="loading" (click)="close_popup = !close_popup">Cancelar</button>
         <app-loading *ngIf="loading"></app-loading>
-        <button *ngIf="!loading" class="btn btn-danger btn-round" (click)="deleteProduct(product_to_delete)">S&iacute;,
+        <button *ngIf="!loading" class="btn btn-danger btn-round" (click)="deletematerial(material_to_delete)">S&iacute;,
           eliminar</button>
       </div>
     </div>

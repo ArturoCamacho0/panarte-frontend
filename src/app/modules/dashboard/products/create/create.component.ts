@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/services/products/products.service';
 import { CategoryService } from 'src/app/services/category/category.service';
+import { Product } from 'src/app/models/Product';
+import { Category } from 'src/app/models/Category';
 
 @Component({
   selector: 'app-create',
@@ -10,21 +12,15 @@ import { CategoryService } from 'src/app/services/category/category.service';
 })
 export class CreateComponent implements OnInit {
   loading: boolean = false;
-  categories: any;
-  product: any;
+  categories: Category[] = [];
+  product: Product;
   status: string = '';
   message: string = '';
   category_name = '';
   close_popup: boolean = false;
 
   constructor(private productService: ProductsService, private categoryService: CategoryService) {
-    this.product = {
-      name: '',
-      price: null,
-      stock: null,
-      status: '',
-      category_id: 0
-    };
+    this.product = new Product(0, '', 0, 0, '', 0);
   }
 
   ngOnInit(): void {
@@ -62,39 +58,6 @@ export class CreateComponent implements OnInit {
         this.loading = false;
         this.status = 'error';
         this.message = 'No se ha podido crear el producto';
-
-        setTimeout(() => {
-          this.status = '';
-          this.message = '';
-        }, 5000);
-      }
-    });
-  }
-
-  saveCategory() {
-    this.loading = true;
-
-    const data = JSON.parse(`{"name": "${this.category_name}"}`);
-
-    this.categoryService.createCategory(data).subscribe({
-      next: (data) => {
-        console.log(data);
-        this.getCategories();
-        this.category_name = '';
-        this.loading = false;
-        this.status = 'success';
-        this.message = 'La categoría se ha creado exitosamente';
-
-        setTimeout(() => {
-          this.status = '';
-          this.message = '';
-        }, 5000);
-      },
-      error: (err) => {
-        console.log(err);
-        this.loading = false;
-        this.status = 'error';
-        this.message = 'No se ha podido crear la categoría';
 
         setTimeout(() => {
           this.status = '';

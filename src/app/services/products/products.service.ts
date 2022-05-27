@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Product } from 'src/app/models/Product';
 
 @Injectable({
   providedIn: 'root'
@@ -28,11 +29,11 @@ export class ProductsService {
     return this.http.get(this.apiUrl + id, { headers: this.headers });
   }
 
-  createProduct(product: JSON) {
+  createProduct(product: Product) {
     return this.http.post(this.apiUrl, product, { headers: this.headers });
   }
 
-  updateProduct(product: JSON, id: number) {
+  updateProduct(product: Product, id: number) {
     return this.http.put(this.apiUrl + id, product, { headers: this.headers });
   }
 

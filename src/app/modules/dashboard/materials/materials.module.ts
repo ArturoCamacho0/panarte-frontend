@@ -1,25 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ProductsRoutingModule } from './products-routing.module';
-import { ProductsComponent } from './products.component';
+import { MaterialsRoutingModule } from './materials-routing.module';
 import { CreateComponent } from './create/create.component';
 import { ModifyComponent } from './modify/modify.component';
-import { FormsModule } from '@angular/forms';
+import { MaterialsComponent } from './materials.component';
 import { ComponentsModule } from 'src/app/components/components.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
-    ProductsComponent,
+    MaterialsComponent,
     CreateComponent,
     ModifyComponent
   ],
   imports: [
     CommonModule,
-    ProductsRoutingModule,
-    FormsModule,
-    ComponentsModule
+    MaterialsRoutingModule,
+    ComponentsModule,
+    FormsModule
   ]
 })
-export class ProductsModule { }
+export class MaterialsModule { }

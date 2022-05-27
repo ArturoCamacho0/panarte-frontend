@@ -1,0 +1,233 @@
+<!-- Category form -->
+<div class="popup" *ngIf="close_popup_c">
+  <div class="popup__card">
+    <div class="popup__card-header">
+      <h2>Agrega una nueva categor&iacute;a</h2>
+    </div>
+    <div class="popup__card-body">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>Nombre de la categor&iacute;a</label>
+            <input type="text" class="form-control" [disabled]="loading" [(ngModel)]="category.name"
+              placeholder="Ingresa el nombre de la categor&iacute;a">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="popup__card-footer">
+      <button class="btn btn-danger btn-round" [disabled]="loading"
+        (click)="close_popup_c = !close_popup_c">Cancelar</button>
+      <app-loading *ngIf="loading"></app-loading>
+      <button *ngIf="!loading" class="btn btn-primary btn-round" (click)="saveCategory()">Agregar</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Provider form -->
+<div class="popup" *ngIf="close_popup_p">
+  <div class="popup__card">
+    <div class="popup__card-header">
+      <h2>Agrega un nuevo proveedor</h2>
+    </div>
+    <div class="popup__card-body">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>Nombre del proveedor</label>
+            <input type="text" class="form-control" [disabled]="loading" [(ngModel)]="provider.name"
+              placeholder="Ingresa el nombre del proveedor">
+          </div>
+          <div class="form-group">
+            <label>Email del proveedor</label>
+            <input type="email" class="form-control" [disabled]="loading" [(ngModel)]="provider.email"
+              placeholder="Ingresa el email del proveedor">
+          </div>
+          <div class="form-group">
+            <label>Telefono del proveedor</label>
+            <input type="text" class="form-control" [disabled]="loading" [(ngModel)]="provider.phone"
+              placeholder="Ingresa el telefono del proveedor">
+          </div>
+
+          <hr />
+
+          <div class="row d-flex justify-content-between align-items-center">
+            <h3>Direcci&oacute;n</h3>
+            <div class="col-md-6 px-1">
+              <div class="form-group">
+                <label>Ciudad</label>
+                <input [disabled]="loading" type="text" name="city" class="form-control"
+                  [(ngModel)]="provider.direction.city" placeholder="Ingresa la ciudad del proveedor">
+              </div>
+            </div>
+            <div class="col-md-6 px-1">
+              <div class="form-group">
+                <label>Estado</label>
+                <input [disabled]="loading" type="text" name="state" class="form-control"
+                  [(ngModel)]="provider.direction.state" placeholder="Ingresa el estado del proveedor">
+              </div>
+            </div>
+          </div>
+          <div class="row d-flex justify-content-between align-items-center">
+            <div class="col-md-12 px-1">
+              <div class="form-group">
+                <label>Calle</label>
+                <input [disabled]="loading" type="text" name="street" class="form-control"
+                  [(ngModel)]="provider.direction.street" placeholder="Ingresa la calle del proveedor">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3 px-1">
+              <div class="form-group">
+                <label>Numero exterior</label>
+                <input [disabled]="loading" type="text" name="e_number" class="form-control"
+                  [(ngModel)]="provider.direction.e_number" placeholder="Ingresa el numero exterior del proveedor">
+              </div>
+            </div>
+            <div class="col-md-3 px-1">
+              <div class="form-group">
+                <label>Numero interior</label>
+                <input [disabled]="loading" type="text" name="i_number" class="form-control"
+                  [(ngModel)]="provider.direction.i_number" placeholder="Ingresa el numero interior del proveedor">
+              </div>
+            </div>
+            <div class="col-md-6 px-1">
+              <div class="form-group">
+                <label>C&oacute;digo postal</label>
+                <input [disabled]="loading" type="text" name="zip_code" class="form-control"
+                  [(ngModel)]="provider.direction.zip_code" placeholder="Ingresa el cp del proveedor">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="popup__card-footer">
+      <button class="btn btn-danger btn-round" [disabled]="loading"
+        (click)="close_popup_p = !close_popup_p">Cancelar</button>
+      <app-loading *ngIf="loading"></app-loading>
+      <button *ngIf="!loading" class="btn btn-primary btn-round" (click)="saveProvider()">Agregar</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Material form -->
+<div class="row">
+  <div>
+    <div class="card card-user">
+      <div class="card-header">
+        <a class="back" routerLink="/materiales">
+          <i class="nc-icon nc-minimal-left"></i>
+        </a>
+        <h1 class="card-title typography-line">Nuevo material</h1>
+      </div>
+      <div class="card-body">
+        <div>
+          <div class="row">
+            <div class="col-md-6 px-1">
+              <div class="form-group">
+                <label>Nombre del material</label>
+                <input [disabled]="loading" type="text" name="name" class="form-control" [(ngModel)]="material.name"
+                  placeholder="Ingresa el nombre del material">
+              </div>
+            </div>
+            <!-- <div class="col-md-6 pl-1">
+              <div class="form-group">
+                <label for="price">Precio</label>
+                <div class="input-group mb-3">
+                  <span class="input-group-text">$</span>
+                  <input [disabled]="loading" type="number" class="form-control" name="price"
+                    [(ngModel)]="material.price" aria-label="0.00" placeholder="0.00">
+                </div>
+              </div>
+            </div> -->
+          </div>
+          <div class="row">
+            <div class="col-md-6 pr-1">
+              <div class="form-group">
+                <label>Stock (KG) o (LT)</label>
+                <input [disabled]="loading" type="number" class="form-control" name="stock" [(ngModel)]="material.stock"
+                  placeholder="Ingresa la cantidad en KG existentes" value="Chet">
+              </div>
+            </div>
+            <div class="col-md-6 pl-1">
+              <div class="form-group">
+                <label>Estatus</label>
+                <select [disabled]="loading" class="form-select" [(ngModel)]="material.status"
+                  aria-label="Default select example">
+                  <option value="">Selecciona el estatus del material...</option>
+                  <option value="in_process">En proceso</option>
+                  <option value="delivered">Entregado</option>
+                  <option value="discontinued">Descontinuado</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Providers select -->
+          <div class="row">
+            <div class="col-md-8 px-1">
+              <div class="form-group">
+                <label>Proveedor</label>
+                <select [disabled]="loading" class="form-select" aria-label="Proveedores" name="provider"
+                  [(ngModel)]="material.provider_id">
+                  <option value="{{ 0 }}">Selecciona una proveedor</option>
+                  <option *ngFor="let provider of providers" value="{{ provider.id }}">
+                    {{ provider.name }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-4 pl-1">
+              <div class="form-group">
+                <button [disabled]="loading" class="btn btn-warning btn-round mt-4"
+                  (click)="close_popup_p = !close_popup_p">Agregar un
+                  proveedor</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Categories select -->
+        <div class="row">
+          <div class="col-md-8 px-1">
+            <div class="form-group">
+              <label>Categor&iacute;a</label>
+              <select [disabled]="loading" class="form-select" aria-label="Categoria" name="category"
+                [(ngModel)]="material.category_id">
+                <option value="{{ 0 }}">Selecciona una categor&iacute;a</option>
+                <option *ngFor="let category of categories" value="{{ category.id }}">
+                  {{ category.name }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-4 pl-1">
+            <div class="form-group">
+              <button [disabled]="loading" class="btn btn-warning btn-round mt-4"
+                (click)="close_popup_c = !close_popup_c">Agregar una
+                categor&iacute;a</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="update ml-auto mr-auto">
+          <app-loading *ngIf="loading"></app-loading>
+          <button *ngIf="!loading" class="btn btn-primary btn-round" (click)="saveMaterial()">Agregar el
+            material</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Alert -->
+<app-alert [status]="status" [message]="message" *ngIf="status != ''"></app-alert>
