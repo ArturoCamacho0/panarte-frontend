@@ -38,6 +38,38 @@ export class CreateComponent implements OnInit {
     });
   }
 
+  saveCategory() {
+    this.loading = true;
+
+    const category = new Category(0, this.category_name);
+
+    this.categoryService.createCategory(category).subscribe({
+      next: () => {
+        this.close_popup = false;
+        this.category_name = '';
+        this.loading = false;
+        this.status = 'success';
+        this.message = 'La categoría se ha creado exitosamente';
+
+        setTimeout(() => {
+          this.status = '';
+          this.message = '';
+        }, 5000);
+      },
+      error: (err) => {
+        console.log(err);
+        this.loading = false;
+        this.status = 'error';
+        this.message = 'No se ha podido crear la categoría';
+
+        setTimeout(() => {
+          this.status = '';
+          this.message = '';
+        }, 5000);
+      }
+    });
+  }
+
   saveProduct(){
     this.loading = true;
 

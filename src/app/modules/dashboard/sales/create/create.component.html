@@ -1,0 +1,161 @@
+<div class="table-responsive add_product" *ngIf="close">
+  <button class="btn btn-danger" id="button" (click)="close = !close">Cerrar</button>
+  <table class="table">
+    <thead class=" text-primary">
+      <th>
+        Nombre
+      </th>
+      <th>
+        Stock
+      </th>
+      <th>
+        Estatus
+      </th>
+      <th class="text-right">
+        Precio
+      </th>
+      <th>
+        Categor&iacute;a
+      </th>
+      <th class="text-right">
+
+      </th>
+    </thead>
+    <tbody>
+      <tr *ngIf="loading">
+        <td>
+          <app-loading></app-loading>
+        </td>
+        <td>
+          <app-loading></app-loading>
+        </td>
+        <td>
+          <app-loading></app-loading>
+        </td>
+        <td>
+          <app-loading></app-loading>
+        </td>
+        <td>
+          <app-loading></app-loading>
+        </td>
+        <td>
+          <app-loading></app-loading>
+        </td>
+      </tr>
+      <tr *ngFor="let product of products_list">
+        <td>
+          {{ product.name }}
+        </td>
+        <td>
+          {{ product.stock }}
+        </td>
+        <td>
+          {{ nameStatus(product.status) }}
+        </td>
+        <td class="text-right">
+          {{ product.price | currency: 'MXN' }}
+        </td>
+        <td>
+          {{ product.category?.name }}
+        </td>
+        <td class="text-right">
+          <div class="d-flex">
+            <button class="btn btn-primary" (click)="addProduct(product)">Seleccionar</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+
+<!-- Sale form -->
+<div class="row">
+  <div>
+    <div class="card card-user">
+      <div class="card-header">
+        <a class="back" routerLink="/materiales">
+          <i class="nc-icon nc-minimal-left"></i>
+        </a>
+        <h1 class="card-title typography-line">Crea una nueva venta</h1>
+      </div>
+      <div class="card-body">
+        <div>
+          <div class="row d-flex justify-content-center">
+            <div class="col-md-6 px-1">
+              <div class="form-group">
+                <label>Fecha</label>
+                <input [disabled]="loading" type="date" name="date" class="form-control" [(ngModel)]="sale.date"
+                  placeholder="Ingresa la fecha de la venta">
+              </div>
+            </div>
+            <!-- <div class="col-md-6 pl-1">
+              <div class="form-group">
+                <label for="price">Precio</label>
+                <div class="input-group mb-3">
+                  <span class="input-group-text">$</span>
+                  <input [disabled]="loading" type="number" class="form-control" name="price"
+                    [(ngModel)]="material.price" aria-label="0.00" placeholder="0.00">
+                </div>
+              </div>
+            </div> -->
+          </div>
+          <div class="row">
+            <div class="col-md-6 pr-1">
+              <div class="form-group">
+                <label>Total</label>
+                <input [disabled]="loading" type="number" class="form-control" name="total" [(ngModel)]="sale.total"
+                  placeholder="Ingresa el total de la venta" value="Chet">
+              </div>
+            </div>
+            <div class="col-md-6 pl-1">
+              <div class="form-group">
+                <label>Estatus</label>
+                <select [disabled]="loading" class="form-select" [(ngModel)]="sale.status"
+                  aria-label="Default select example">
+                  <option value="">Selecciona el estatus de la venta...</option>
+                  <option value="in_process">En proceso</option>
+                  <option value="waiting">En espera</option>
+                  <option value="finished">Finalizada</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-8 pl-1">
+              <div class="form-group">
+                <label>Cliente</label>
+                <select [disabled]="loading" class="form-select" [(ngModel)]="sale.customer_id"
+                  aria-label="Default select example">
+                  <option value="{{ 0 }}">Selecciona el cliente que realiza la compra...</option>
+                  <option *ngFor="let customer of customers" value="{{ customer.id }}">{{ customer.name }}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <h2>Productos</h2>
+
+          <ul class="list-group">
+            <button class="btn btn-danger" (click)="close = !close">Agregar producto</button>
+            <li class="list-group-item" *ngFor="let product of products_added">{{ product.name }}</li>
+          </ul>
+        </div>
+
+      <div class="row">
+        <div class="update ml-auto mr-auto">
+          <app-loading *ngIf="loading"></app-loading>
+          <button *ngIf="!loading" class="btn btn-primary btn-round" (click)="createSale()">Guardar la
+            venta</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Alert -->
+<app-alert [status]="status" [message]="message" *ngIf="status != ''"></app-alert>
