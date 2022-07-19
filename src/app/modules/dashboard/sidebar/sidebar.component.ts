@@ -13,8 +13,6 @@ export const ROUTES: RouteInfo[] = [
   { path: '/productos',  title: 'Productos',   icon:'nc-app',          class: '' },
   { path: '/materiales', title: 'Materiales',  icon:'nc-box',          class: '' },
   { path: '/clientes',   title: 'Clientes',    icon:'nc-circle-10',    class: '' },
-  { path: '/ventas',     title: 'Ventas',      icon:'nc-money-coins',  class: '' },
-  { path: '/compras',    title: 'Compras',     icon:'nc-cart-simple',  class: '' },
 ];
 
 @Component({
